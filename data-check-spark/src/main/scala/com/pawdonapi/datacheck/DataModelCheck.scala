@@ -1,4 +1,4 @@
-package com.pawdonapi.datatestsspark
+package com.pawdonapi.datacheck
 
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.{Column, DataFrame, functions => F}

@@ -1,4 +1,4 @@
-package com.pawdonapi.datatestsspark
+package com.pawdonapi.datacheck
 
 import org.scalatest.funsuite.AnyFunSuite
 
