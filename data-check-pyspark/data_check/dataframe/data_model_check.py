@@ -2,7 +2,7 @@ from functools import reduce
 from typing import Optional, List, Dict
 from pyspark.sql import DataFrame, Column, Window, functions as F
 
-class DataCheck:
+class DataModelCheck:
     @classmethod
     def uniqueness(cls, src: DataFrame, keys: List[str]) -> DataFrame:
         result_full = (

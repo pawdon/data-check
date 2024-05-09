@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 
-from data_check.dataframe.data_model_check import DataCheck
+from data_check.dataframe.data_model_check import DataModelCheck
 from ..spark_utils import *
 
 
@@ -24,7 +24,7 @@ def test_uniqueness(spark: SparkSession):
         as (order_id, item_id, comment)
     """)
 
-    result = DataCheck.uniqueness(
+    result = DataModelCheck.uniqueness(
         src=order_details, 
         keys=["order_id", "item_id"]
     )
@@ -58,7 +58,7 @@ def test_denormalization(spark: SparkSession):
         as (article_id, supplier_id, category_name, supplier_phone, comment)
     """)
 
-    result = DataCheck.denormalization(
+    result = DataModelCheck.denormalization(
         src=promotion_details,
         group=["article_id", "supplier_id"],
         values=["category_name", "supplier_phone"],
@@ -99,7 +99,7 @@ def test_relationship(spark: SparkSession):
         as (article_id, promotion_id, unit_price)
     """)
 
-    result = DataCheck.relationship(
+    result = DataModelCheck.relationship(
         src=order_details,
         ref=promotion_details,
         keys=["order_id", "article_id"],
@@ -118,7 +118,7 @@ def test_relationship(spark: SparkSession):
 
     assert_df_equals(result, expected)
 
-    result = DataCheck.relationship(
+    result = DataModelCheck.relationship(
         src=order_details,
         ref=promotion_details,
         keys=["order_id", "article_id"],
@@ -135,7 +135,7 @@ def test_relationship(spark: SparkSession):
 
     assert_df_equals(result, expected)
 
-    result = DataCheck.relationship(
+    result = DataModelCheck.relationship(
         src=order_details,
         ref=promotion_details,
         keys=["order_id", "article_id"],
@@ -152,7 +152,7 @@ def test_relationship(spark: SparkSession):
 
     assert_df_equals(result, expected)
 
-    result = DataCheck.relationship(
+    result = DataModelCheck.relationship(
         src=order_details,
         ref=promotion_details,
         keys=["order_id", "article_id"],
@@ -202,7 +202,7 @@ def test_consistency(spark: SparkSession):
         as (article_id, promotion_id, category_name, supplier_phone, comment)
     """)
 
-    result = DataCheck.consistency(
+    result = DataModelCheck.consistency(
         src=order_details,
         ref=promotion_details,
         join=["article_id", "promotion_id"],
@@ -266,7 +266,7 @@ def test_accuracy(spark: SparkSession):
         as (order_date, category_id, order_month, order_counts, sales_total, sales_avg, comment)
     """)
 
-    result = DataCheck.accuracy(
+    result = DataModelCheck.accuracy(
         src=real_result,
         ref=expected_result,
         keys=["order_date", "category_id"],
@@ -292,7 +292,7 @@ def test_accuracy(spark: SparkSession):
 
     assert_df_equals(result, expected)
 
-    result = DataCheck.accuracy(
+    result = DataModelCheck.accuracy(
         src=real_result,
         ref=expected_result,
         keys=["order_date", "category_id"]
@@ -340,7 +340,7 @@ def test_accuracy_sorted(spark: SparkSession):
         as (order_date, category_id, order_month, order_counts, sales_total, sales_avg, comment)
     """)
 
-    result = DataCheck.accuracy_sorted(
+    result = DataModelCheck.accuracy_sorted(
         src=real_result,
         ref=expected_result,
         group=["order_date", "category_id"],
@@ -364,7 +364,7 @@ def test_accuracy_sorted(spark: SparkSession):
 
     assert_df_equals(result, expected)
 
-    result = DataCheck.accuracy_sorted(
+    result = DataModelCheck.accuracy_sorted(
         src=real_result,
         ref=expected_result,
         group=["order_date", "category_id"],
@@ -381,7 +381,7 @@ def test_accuracy_sorted(spark: SparkSession):
 
     assert_df_equals(result, expected)
 
-    result = DataCheck.accuracy_sorted(
+    result = DataModelCheck.accuracy_sorted(
         src=real_result,
         ref=expected_result,
         sort=["order_counts", "sales_total"],
