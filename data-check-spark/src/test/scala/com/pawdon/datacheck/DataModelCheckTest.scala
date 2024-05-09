@@ -1,4 +1,4 @@
-package com.pawdonapi.datacheck
+package com.pawdon.datacheck
 
 import org.scalatest.funsuite.AnyFunSuite
 

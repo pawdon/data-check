@@ -1,4 +1,4 @@
-package com.pawdonapi.datacheck
+package com.pawdon.datacheck
 
 import org.apache.spark.sql.functions.col
 import org.apache.spark.sql.{DataFrame, SparkSession}
