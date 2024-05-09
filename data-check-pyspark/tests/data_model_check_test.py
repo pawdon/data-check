@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 
-from data_check.dataframe.data_model_check import DataModelCheck
-from ..spark_utils import *
+from data_check.data_model_check import DataModelCheck
+from tests.spark_utils import *
 
 
 def test_uniqueness(spark: SparkSession):
